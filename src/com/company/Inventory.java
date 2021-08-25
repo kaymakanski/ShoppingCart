@@ -9,7 +9,4 @@ public class Inventory {
     public void add(Product product){
         this.products.put(product.getId(), product);
     }
-    public Product get(String id){
-        return products.get(id);
-    }
 }
