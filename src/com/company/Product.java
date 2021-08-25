@@ -1,10 +1,10 @@
 package com.company;
 
 public class Product {
-    private final String id;
-    private final String name;
-    private final double price;
-    private final ProductType productType;
+    private String id;
+    private String name;
+    private double price;
+    private ProductType productType;
 
     public Product(String id, String name, double price, ProductType productType){
         this.id = id;
@@ -12,6 +12,8 @@ public class Product {
         this.price = price;
         this.productType = productType;
     }
+
+    public Product(){}
 
     public String getId() {
         return id;

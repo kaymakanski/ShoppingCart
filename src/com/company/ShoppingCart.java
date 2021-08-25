@@ -8,7 +8,7 @@ import java.util.Map;
 
 public class ShoppingCart {
     private List<LineProduct> productsInCart = new ArrayList<>();
-
+    private Map<String, Double> productDiscounts = new HashMap<>();
     public void addProduct(LineProduct lineProduct) {
         productsInCart.add(lineProduct);
     }
@@ -29,13 +29,15 @@ public class ShoppingCart {
         }
     }
 
-    private double getTotalPrice() {
+    public double getTotalPrice() {
         double totalPrice = 0;
 
         for (LineProduct lineProduct : productsInCart) {
             if (lineProduct.getQuantity() > 2) {
+                productDiscounts.put(lineProduct.getProductId(), lineProduct.getQuantity() * lineProduct.getSinglePrice() * 0.1);
                 totalPrice += 0.9 * lineProduct.getQuantity() * lineProduct.getSinglePrice();
             } else {
+                productDiscounts.put(lineProduct.getProductId(), 0.0);
                 totalPrice += lineProduct.getQuantity() * lineProduct.getSinglePrice();
             }
         }
@@ -45,7 +47,7 @@ public class ShoppingCart {
         return totalPrice;
     }
 
-    private int getTotalNumberOfProducts(){
+    public int getTotalNumberOfProducts(){
         int totalNumberOfProducts = 0;
         for(LineProduct lineProduct : productsInCart){
             totalNumberOfProducts += lineProduct.getQuantity();
@@ -53,7 +55,7 @@ public class ShoppingCart {
         return totalNumberOfProducts;
     }
 
-    private double getTotalDiscount(double totalPrice) {
+    public double getTotalDiscount(double totalPrice) {
         double pricePriorDiscount = 0;
         for(LineProduct lineProduct : productsInCart){
             pricePriorDiscount += lineProduct.getSinglePrice()* lineProduct.getQuantity();
@@ -67,14 +69,16 @@ public class ShoppingCart {
         int totalNumberOfProducts = getTotalNumberOfProducts();
 
         for (LineProduct lineProduct : productsInCart) {
-            System.out.printf("Product -> %s\nQuantity -> %d\nPrice -> %.2f\n",
+            System.out.printf("Product -> %s\nQuantity -> %d\nPrice -> %.2f\nDiscount -> %.2f\n",
                     lineProduct.getProductName(),
                     lineProduct.getQuantity(),
-                    lineProduct.getSinglePrice() * lineProduct.getQuantity());
+                    lineProduct.getSinglePrice() * lineProduct.getQuantity(),
+                    productDiscounts.get(lineProduct.getProductId()));
             System.out.println("------------------------------------------------------------");
         }
         System.out.println();
         System.out.printf("Total number of products -> %d \nTotal Price -> %.2f \nTotal Discount -> %.2f\n", totalNumberOfProducts, totalPrice, totalDiscount);
         System.out.println();
+        productDiscounts.clear();
     }
 }

@@ -16,14 +16,7 @@ public class Main {
         cart.addProduct(new LineProduct(product1.getId(), product1.getName(), 1, product1.getPrice()));
         cart.addProduct(new LineProduct(product2.getId(), product2.getName(), 4, product2.getPrice()));
         cart.addProduct(new LineProduct(product3.getId(), product3.getName(), 2, product3.getPrice()));
-
-        cart.deleteProduct(new LineProduct(product2.getId(), 2));
-
         cart.addProduct(new LineProduct(product4.getId(), product4.getName(), 3, product4.getPrice()));
-
-        cart.showProductsInfo();
-
-        cart.deleteProduct(new LineProduct(product4.getId(), 3));
 
         cart.showProductsInfo();
         cart.showProductsInfo();
