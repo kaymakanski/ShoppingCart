@@ -7,7 +7,6 @@ import java.util.*;
 
 public class ShoppingCart {
     private final List<ShoppingCartItem> itemsInCart = new ArrayList<>();
-    private final Map<String, Double> productDiscounts = new HashMap<>();
 
     public void addItem(Product product, int quantity) {
         if (quantity < 1) {

@@ -15,12 +15,11 @@ class ShoppingCartTest {
     private final Product product2 = new Product("2", "HP Laptop", 70, ProductType.LAPTOP);
     private final Product product3 = new Product("3", "Logitech Headset", 40, ProductType.HEADPHONES);
     private final Product product4 = new Product("4", "Logitech Mouse", 20, ProductType.MOUSE);
-    private Inventory inventory;
     private ShoppingCart cart;
 
     @BeforeEach
     void setUp() {
-        inventory = new Inventory();
+        Inventory inventory = new Inventory();
         inventory.add(product1);
         inventory.add(product2);
         inventory.add(product3);
@@ -81,6 +80,15 @@ class ShoppingCartTest {
         cart.addItem(product3, 2);
 
         assertEquals(315, cart.getTotalPrice());
+    }
+
+    @Test
+    void increaseQuantity(){
+        cart.addItem(product1, 1);
+        cart.addItem(product1, 1);
+
+        assertEquals(1, cart.getItems().size());
+        assertEquals(2, cart.getQuantity(product1));
     }
 
     @Test
