@@ -1,19 +1,17 @@
-package com.company;
+package com.company.products;
 
 public class Product {
-    private String id;
-    private String name;
-    private double price;
-    private ProductType productType;
+    private final String id;
+    private final String name;
+    private final double price;
+    private final ProductType productType;
 
-    public Product(String id, String name, double price, ProductType productType){
+    public Product(String id, String name, double price, ProductType productType) {
         this.id = id;
         this.name = name;
         this.price = price;
         this.productType = productType;
     }
-
-    public Product(){}
 
     public String getId() {
         return id;
